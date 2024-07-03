@@ -4,9 +4,9 @@
 <img src="https://img.shields.io/badge/h2-4479A1?style=for-the-badge&logo=wikidata&logoColor=white" alt="h2">
 
 ---
-## 프로젝트 주요 기능과 목적
-레이어드 아키텍처를 학습하기 위함입니다.  
-최종적으로 ***레이어드 아키텍처 Template*** 을 만드는 것이 목표입니다.
+## 프로젝트 주요 기능과 목적  
+- 레이어드 아키텍처를 학습하기 위함입니다.  
+- 최종적으로 ***레이어드 아키텍처 Template*** 을 만드는 것이 목표입니다.
 ---
 ## 설치 방법
 - JDK 17 로 프로젝트를 실행하면 됩니다.
