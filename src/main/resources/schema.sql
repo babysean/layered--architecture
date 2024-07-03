@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS member
+(
+    id   BIGINT NOT NULL,
+    name VARCHAR(255),
+    PRIMARY KEY (ID)
+);

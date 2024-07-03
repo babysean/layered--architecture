@@ -1,0 +1,24 @@
+spring:
+    application:
+        name: layered-architecture
+    h2:
+        console:
+            enabled: true # H2 Console 사용 여부
+            path: /h2-console # H2 Console Path
+    datasource:
+        driver-class-name: org.h2.Driver # Database 를 H2 선언
+        url: jdbc:h2:~/test # H2 접속 정보
+        username: sa # H2 접속 username
+        password: 1234 # H2 접속 password
+    jpa:
+        defer-datasource-initialization: true
+        hibernate:
+            ddl-auto: update # 테이블이 존재할 경우 스킵
+        properties:
+            hibernate:
+                show_sql: true
+                format_sql: true
+                use_sql_comments: true
+    sql:
+        init:
+            mode: always
