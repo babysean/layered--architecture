@@ -47,9 +47,9 @@
 2. 아래 API 를 호출합니다.
 
 ```
-http://localhost:8080/member?id=1
-http://localhost:8080/member?id=2
-http://localhost:8080/member?id=3
+http://localhost:8080/consumer?id=1
+http://localhost:8080/consumer?id=2
+http://localhost:8080/consumer?id=3
 ```
 
 ---

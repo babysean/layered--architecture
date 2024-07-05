@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `user`
+CREATE TABLE IF NOT EXISTS `consumer`
 (
     id   BIGINT NOT NULL,
     name VARCHAR(255),
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `shopping_cart`
     store_id              BIGINT,
     is_purchase_completed BOOLEAN,
     PRIMARY KEY (id),
-    FOREIGN KEY (user_id) REFERENCES `user` (id) ON UPDATE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES `consumer` (id) ON UPDATE CASCADE,
     FOREIGN KEY (store_id) REFERENCES `store` (id) ON UPDATE CASCADE
 );
 
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `receipt`
     shopping_cart_id BIGINT,
     total_price      BIGINT,
     PRIMARY KEY (id),
-    FOREIGN KEY (user_id) REFERENCES `user` (id) ON UPDATE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES `consumer` (id) ON UPDATE CASCADE,
     FOREIGN KEY (store_id) REFERENCES `store` (id) ON UPDATE CASCADE,
     FOREIGN KEY (shopping_cart_id) REFERENCES `shopping_cart` (id) ON UPDATE CASCADE
 );

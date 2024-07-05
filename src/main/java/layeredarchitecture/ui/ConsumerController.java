@@ -1,7 +1,7 @@
 package layeredarchitecture.ui;
 
-import layeredarchitecture.service.MemberService;
-import layeredarchitecture.ui.response.MemberResponse;
+import layeredarchitecture.service.ConsumerService;
+import layeredarchitecture.ui.response.ConsumerResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/")
-public class MemberController {
+public class ConsumerController {
 
-    private final MemberService memberService;
+    private final ConsumerService consumerService;
 
-    @GetMapping("/member")
+    @GetMapping("/consumer")
     public ResponseEntity<?> getUser(@RequestParam("id") Long id) {
         System.out.println("id = " + id);
-        MemberResponse memberResponse = memberService.getMemberInfo(id);
+        ConsumerResponse memberResponse = consumerService.getMemberInfo(id);
         return ResponseEntity.ok(memberResponse);
     }
 }

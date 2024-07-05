@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Member")
-public class Member {
+@Table(name = "CONSUMER")
+public class Consumer {
 
     @Id private String id;
     private String name;

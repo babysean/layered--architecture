@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Data
 @Builder
-public class MemberResponse {
+public class ConsumerResponse {
 
     private String id;
     private String name;

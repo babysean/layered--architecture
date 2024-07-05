@@ -1,24 +1,24 @@
 -- user 데이터 insert --
 
-INSERT INTO `user` (id, name)
+INSERT INTO `consumer` (id, name)
 SELECT 1, '상훈'
 FROM dual
-WHERE NOT EXISTS(SELECT * FROM `user` WHERE id = 1);
+WHERE NOT EXISTS(SELECT * FROM `consumer` WHERE id = 1);
 
-INSERT INTO `user` (id, name)
+INSERT INTO `consumer` (id, name)
 SELECT 2, '현종'
 FROM dual
-WHERE NOT EXISTS(SELECT * FROM `user` WHERE id = 1);
+WHERE NOT EXISTS(SELECT * FROM `consumer` WHERE id = 2);
 
-INSERT INTO `user` (id, name)
+INSERT INTO `consumer` (id, name)
 SELECT 3, '윤하'
 FROM dual
-WHERE NOT EXISTS(SELECT * FROM `user` WHERE id = 1);
+WHERE NOT EXISTS(SELECT * FROM `consumer` WHERE id = 3);
 
-INSERT INTO `user` (id, name)
+INSERT INTO `consumer` (id, name)
 SELECT 4, '유경'
 FROM dual
-WHERE NOT EXISTS(SELECT * FROM `user` WHERE id = 1);
+WHERE NOT EXISTS(SELECT * FROM `consumer` WHERE id = 4);
 
 -- store 데이터 insert --
 
