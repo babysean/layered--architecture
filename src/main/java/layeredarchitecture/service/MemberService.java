@@ -1,8 +1,8 @@
-package layeredArchitecture.service;
+package layeredarchitecture.service;
 
-import layeredArchitecture.repository.MemberRepository;
-import layeredArchitecture.repository.model.Member;
-import layeredArchitecture.repository.model.MemberResponse;
+import layeredarchitecture.repository.MemberRepository;
+import layeredarchitecture.repository.model.Member;
+import layeredarchitecture.repository.model.MemberResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

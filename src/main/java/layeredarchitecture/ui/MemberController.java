@@ -1,7 +1,7 @@
-package layeredArchitecture.ui;
+package layeredarchitecture.ui;
 
-import layeredArchitecture.repository.model.MemberResponse;
-import layeredArchitecture.service.MemberService;
+import layeredarchitecture.repository.model.MemberResponse;
+import layeredarchitecture.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

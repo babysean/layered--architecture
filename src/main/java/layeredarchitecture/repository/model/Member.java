@@ -1,4 +1,4 @@
-package layeredArchitecture.repository.model;
+package layeredarchitecture.repository.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
