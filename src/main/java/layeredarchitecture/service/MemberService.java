@@ -2,7 +2,7 @@ package layeredarchitecture.service;
 
 import layeredarchitecture.repository.MemberRepository;
 import layeredarchitecture.repository.model.Member;
-import layeredarchitecture.repository.model.MemberResponse;
+import layeredarchitecture.ui.response.MemberResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

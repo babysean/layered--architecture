@@ -1,4 +1,4 @@
-package layeredarchitecture.repository.model;
+package layeredarchitecture.ui.response;
 
 import lombok.Builder;
 import lombok.Data;
