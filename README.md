@@ -21,17 +21,20 @@
 
 - **UI Layer**는 **Service Layer**만 의존해야한다.
 - **Service Layer**는 **Repository Layer**만 의존해야한다.
+    - 예외) **Application Layer**는 **Infrastructure Layer**에 의존할 수도 있다.
 
 ### 계층별 구성
 
-- UI Layer
+- Presentation Layer
     - Controller
-    - Response
-- Service Layer
+- Application Layer
     - Service
-- Repository Layer
-    - Repository (DB 연결)
-    - Model (DTO)
+- Domain
+    - Domain (핵심 로직)
+- Infrastructure Layer
+    - Repository
+    - Entity
+- DTO
 
 ### ERD
 
