@@ -30,9 +30,10 @@
 - Application Layer
     - Service
 - Domain
-    - Domain (Entity / 핵심 로직)
+    - Domain (비즈니스 로직)
 - Infrastructure Layer
     - Repository
+    - Entity
 - DTO
 
 ### ERD
@@ -55,22 +56,22 @@
 ### 고객정보 조회
 
 ```
-http://localhost:8080/consumer?id=1
-http://localhost:8080/consumer?id=2
-http://localhost:8080/consumer?id=3
+http://localhost:8080/consumerEntity?id=1
+http://localhost:8080/consumerEntity?id=2
+http://localhost:8080/consumerEntity?id=3
 ```
 
 ### Store 전체 조회
 
 ```
-http://localhost:8080/store
+http://localhost:8080/storeEntity
 ```
 
 ### 특정 Store 의 판매 과일 목록 조회
 
 ```
-http://localhost:8080/store/1/fruit
-http://localhost:8080/store/2/fruit
+http://localhost:8080/storeEntity/1/fruit
+http://localhost:8080/storeEntity/2/fruit
 ```
 
 ---
