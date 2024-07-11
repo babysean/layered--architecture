@@ -15,7 +15,7 @@
 
 ## 프로젝트 구조
 
-![img.png](image/layered-architecture.png)
+![img.png](readme-image/layered-architecture.png)
 
 ### 의존관계
 
@@ -32,6 +32,10 @@
 - Repository Layer
     - Repository (DB 연결)
     - Model (DTO)
+
+### ERD
+
+![img.png](readme-image/erd.png)
 
 ---
 
