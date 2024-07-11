@@ -8,6 +8,7 @@ import lombok.Data;
 public class ConsumerDto {
 
     private Long id;
+    
     private String name;
 
 }

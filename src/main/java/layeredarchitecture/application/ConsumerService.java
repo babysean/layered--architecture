@@ -2,9 +2,9 @@ package layeredarchitecture.application;
 
 
 import java.util.Optional;
+import layeredarchitecture.domain.Consumer;
 import layeredarchitecture.dto.ConsumerDto;
 import layeredarchitecture.infrastructure.ConsumerRepository;
-import layeredarchitecture.infrastructure.entity.ConsumerEntity;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -19,10 +19,10 @@ public class ConsumerService {
 
     @Transactional(readOnly = true)
     public ConsumerDto getConsumerInfo(Long id) {
-        Optional<ConsumerEntity> consumerOptional = consumerRepository.findById(id);
+        Optional<Consumer> consumerOptional = consumerRepository.findById(id);
 
         if (consumerOptional.isPresent()) {
-            ConsumerEntity consumer = consumerOptional.get();
+            Consumer consumer = consumerOptional.get();
 
             return ConsumerDto.builder()
                     .id(consumer.getId())
