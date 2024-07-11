@@ -30,10 +30,9 @@
 - Application Layer
     - Service
 - Domain
-    - Domain (핵심 로직)
+    - Domain (Entity / 핵심 로직)
 - Infrastructure Layer
     - Repository
-    - Entity
 - DTO
 
 ### ERD
