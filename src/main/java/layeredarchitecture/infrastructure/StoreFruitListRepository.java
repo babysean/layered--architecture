@@ -2,12 +2,12 @@ package layeredarchitecture.infrastructure;
 
 import java.util.List;
 import java.util.Optional;
-import layeredarchitecture.domain.StoreFruitList;
+import layeredarchitecture.infrastructure.entity.StoreFruitListEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface StoreFruitListRepository extends JpaRepository<StoreFruitList, Long> {
+public interface StoreFruitListRepository extends JpaRepository<StoreFruitListEntity, Long> {
 
-    List<StoreFruitList> findByStoreId(Long storeId);
+    List<StoreFruitListEntity> findByStoreId(Long storeId);
 
-    Optional<StoreFruitList> findByStoreIdAndFruitId(Long storeId, Long fruitId);
+    Optional<StoreFruitListEntity> findByStoreIdAndFruitId(Long storeId, Long fruitId);
 }

@@ -4,12 +4,12 @@ package layeredarchitecture.application;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import layeredarchitecture.domain.Store;
-import layeredarchitecture.domain.StoreFruitList;
 import layeredarchitecture.dto.StoreDto;
 import layeredarchitecture.dto.StoreFruitListDto;
 import layeredarchitecture.infrastructure.StoreFruitListRepository;
 import layeredarchitecture.infrastructure.StoreRepository;
+import layeredarchitecture.infrastructure.entity.StoreEntity;
+import layeredarchitecture.infrastructure.entity.StoreFruitListEntity;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -31,13 +31,13 @@ public class StoreService {
      */
     @Transactional(readOnly = true)
     public List<StoreDto> getStores() {
-        List<Store> stores = storeRepository.findAll();
+        List<StoreEntity> storeEntities = storeRepository.findAll();
 
-        if (!stores.isEmpty()) {
-            return stores.stream()
-                    .map(store -> StoreDto.builder()
-                            .id(store.getId())
-                            .name(store.getName())
+        if (!storeEntities.isEmpty()) {
+            return storeEntities.stream()
+                    .map(storeEntity -> StoreDto.builder()
+                            .id(storeEntity.getId())
+                            .name(storeEntity.getName())
                             .build())
                     .collect(Collectors.toList());
         }
@@ -54,17 +54,17 @@ public class StoreService {
      */
     @Transactional(readOnly = true)
     public List<StoreFruitListDto> getStoreFruitListByStoreId(Long storeId) {
-        List<StoreFruitList> storeFruitList = storeFruitListRepository.findByStoreId(storeId);
+        List<StoreFruitListEntity> storeFruitListEntity = storeFruitListRepository.findByStoreId(storeId);
 
-        if (!storeFruitList.isEmpty()) {
-            return storeFruitList.stream()
+        if (!storeFruitListEntity.isEmpty()) {
+            return storeFruitListEntity.stream()
                     .map(storeFruit -> StoreFruitListDto.builder()
                             .id(storeFruit.getId())
-                            .storeId(storeFruit.getStore()
+                            .storeId(storeFruit.getStoreEntity()
                                     .getId())
-                            .fruitId(storeFruit.getFruit()
+                            .fruitId(storeFruit.getFruitEntity()
                                     .getId())
-                            .fruitName(storeFruit.getFruit()
+                            .fruitName(storeFruit.getFruitEntity()
                                     .getName())
                             .price(storeFruit.getPrice())
                             .quantity(storeFruit.getQuantity())
@@ -85,9 +85,9 @@ public class StoreService {
      * @return Long
      */
     public Long getFruitQuantity(Long storeId, Long fruitId) {
-        Optional<StoreFruitList> storeFruitListEntityOptional = storeFruitListRepository.findByStoreIdAndFruitId(storeId, fruitId);
+        Optional<StoreFruitListEntity> storeFruitListEntityOptional = storeFruitListRepository.findByStoreIdAndFruitId(storeId, fruitId);
 
-        return storeFruitListEntityOptional.map(StoreFruitList::getQuantity)
+        return storeFruitListEntityOptional.map(StoreFruitListEntity::getQuantity)
                 .orElse(0L);
     }
 }

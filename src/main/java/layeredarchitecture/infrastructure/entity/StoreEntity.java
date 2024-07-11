@@ -1,4 +1,4 @@
-package layeredarchitecture.domain;
+package layeredarchitecture.infrastructure.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "STORE")
-public class Store {
+public class StoreEntity {
 
     @Id
     @Column(name = "id")
@@ -27,5 +27,5 @@ public class Store {
     private String name;
 
     @OneToMany(mappedBy = "store")
-    private List<StoreFruitList> storeFruits;
+    private List<StoreFruitListEntity> storeFruits;
 }

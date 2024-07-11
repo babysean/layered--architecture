@@ -1,4 +1,4 @@
-package layeredarchitecture.domain;
+package layeredarchitecture.infrastructure.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "STORE_FRUIT_LIST")
-public class StoreFruitList {
+public class StoreFruitListEntity {
 
     @Id
     @Column(name = "id")
@@ -25,11 +25,11 @@ public class StoreFruitList {
 
     @ManyToOne
     @JoinColumn(name = "store_id", nullable = false)
-    private Store store;
+    private StoreEntity storeEntity;
 
     @ManyToOne
     @JoinColumn(name = "fruit_id", nullable = false)
-    private Fruit fruit;
+    private FruitEntity fruitEntity;
 
     @Column(name = "price")
     private Long price;
