@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface StoreFruitListRepository extends JpaRepository<StoreFruitListEntity, Long> {
 
-    List<StoreFruitListEntity> findByStoreId(Long storeId);
+    List<StoreFruitListEntity> findByStoreEntityId(Long storeId);
 
-    Optional<StoreFruitListEntity> findByStoreIdAndFruitId(Long storeId, Long fruitId);
+    Optional<StoreFruitListEntity> findByStoreEntityIdAndFruitEntityId(Long storeId, Long fruitId);
 }

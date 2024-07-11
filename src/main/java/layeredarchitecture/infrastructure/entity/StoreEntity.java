@@ -26,6 +26,6 @@ public class StoreEntity {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "store")
+    @OneToMany(mappedBy = "storeEntity")
     private List<StoreFruitListEntity> storeFruits;
 }

@@ -54,7 +54,7 @@ public class StoreService {
      */
     @Transactional(readOnly = true)
     public List<StoreFruitListDto> getStoreFruitListByStoreId(Long storeId) {
-        List<StoreFruitListEntity> storeFruitListEntity = storeFruitListRepository.findByStoreId(storeId);
+        List<StoreFruitListEntity> storeFruitListEntity = storeFruitListRepository.findByStoreEntityId(storeId);
 
         if (!storeFruitListEntity.isEmpty()) {
             return storeFruitListEntity.stream()
@@ -85,7 +85,7 @@ public class StoreService {
      * @return Long
      */
     public Long getFruitQuantity(Long storeId, Long fruitId) {
-        Optional<StoreFruitListEntity> storeFruitListEntityOptional = storeFruitListRepository.findByStoreIdAndFruitId(storeId, fruitId);
+        Optional<StoreFruitListEntity> storeFruitListEntityOptional = storeFruitListRepository.findByStoreEntityIdAndFruitEntityId(storeId, fruitId);
 
         return storeFruitListEntityOptional.map(StoreFruitListEntity::getQuantity)
                 .orElse(0L);
