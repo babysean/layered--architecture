@@ -52,10 +52,25 @@
 1. LayeredArchitectureApplication 을 실행합니다.
 2. 아래 API 를 호출합니다.
 
+### 고객정보 조회
+
 ```
 http://localhost:8080/consumer?id=1
 http://localhost:8080/consumer?id=2
 http://localhost:8080/consumer?id=3
+```
+
+### Store 전체 조회
+
+```
+http://localhost:8080/store
+```
+
+### 특정 Store 의 판매 과일 목록 조회
+
+```
+http://localhost:8080/store/1/fruit
+http://localhost:8080/store/2/fruit
 ```
 
 ---
