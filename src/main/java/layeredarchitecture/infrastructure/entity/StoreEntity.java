@@ -2,6 +2,7 @@ package layeredarchitecture.infrastructure.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -26,6 +27,6 @@ public class StoreEntity {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "storeEntity")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "storeEntity")
     private List<StoreFruitListEntity> storeFruits;
 }
