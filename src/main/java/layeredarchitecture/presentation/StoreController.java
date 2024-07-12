@@ -21,13 +21,13 @@ public class StoreController {
     private final StoreService storeService;
 
     @GetMapping
-    public ResponseEntity<?> getAllStores() {
+    public ResponseEntity<List<StoreDto>> getAllStores() {
         List<StoreDto> stores = storeService.getStores();
         return ResponseEntity.ok(stores);
     }
 
     @GetMapping("/{storeId}/fruit")
-    public ResponseEntity<?> getFruitOfStore(@PathVariable Long storeId) {
+    public ResponseEntity<List<StoreFruitListDto>> getFruitOfStore(@PathVariable Long storeId) {
         List<StoreFruitListDto> storeFruitList = storeService.getStoreFruitListByStoreId(storeId);
         return ResponseEntity.ok(storeFruitList);
     }
