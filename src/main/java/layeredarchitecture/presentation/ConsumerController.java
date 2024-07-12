@@ -19,7 +19,7 @@ public class ConsumerController {
     private final ConsumerService consumerService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<ConsumerDto> getUser(@PathVariable Long id) {
+    public ResponseEntity<ConsumerDto> getConsumer(@PathVariable Long id) {
         ConsumerDto consumerDto = consumerService.getConsumerInfo(id);
         return ResponseEntity.ok(consumerDto);
     }
