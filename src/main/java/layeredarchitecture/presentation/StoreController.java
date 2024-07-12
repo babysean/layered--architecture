@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/store")
+@RequestMapping("/stores")
 public class StoreController {
 
     private final StoreService storeService;
@@ -32,7 +32,7 @@ public class StoreController {
         return ResponseEntity.ok(storeFruitList);
     }
 
-    @GetMapping("/{storeId}/fruit/{fruitId}/quantity")
+    @GetMapping("/{storeId}/fruits/{fruitId}/quantity")
     public ResponseEntity<Long> getFruitQuantity(@PathVariable Long storeId, @PathVariable Long fruitId) {
         Long quantity = storeService.getFruitQuantity(storeId, fruitId);
         return ResponseEntity.ok(quantity);
