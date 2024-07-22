@@ -50,6 +50,10 @@
 
 ## 테스트 방법
 
+API 문서 : http://localhost:8080/swagger-ui/index.html  
+API 문서 다운로드 (yaml) : http://localhost:8080/api-docs.yaml  
+API 문서 다운로드 (json) : http://localhost:8080/api-docs
+
 1. LayeredArchitectureApplication 을 실행합니다.
 2. 아래 API 를 호출합니다.
 
@@ -78,10 +82,11 @@ http://localhost:8080/storeEntity/2/fruit
 
 ## 라이브러리 정보
 
-- spring-boot-starter
-- spring-boot-starter-web
-- spring-boot-starter-data-jpa
-- spring-boot-starter-test
-- lombok
-- h2
-- junit-platform-launcher
+- spring-boot-starter (latest)
+- spring-boot-starter-web (latest)
+- spring-boot-starter-data-jpa (latest)
+- spring-boot-starter-test (latest)
+- springdoc-openapi-starter-webmvc-ui (2.6.0)
+- lombok (latest)
+- h2 (latest)
+- junit-platform-launcher (latest)
