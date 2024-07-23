@@ -14,10 +14,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @Tag(
@@ -58,6 +56,11 @@ public class ConsumerController {
     )
     public ResponseEntity<ConsumerDto> getConsumer(@PathVariable Long id) {
         ConsumerDto consumerDto = consumerService.getConsumerInfo(id);
+        return ResponseEntity.ok(consumerDto);
+    }
+
+    @PostMapping
+    public ResponseEntity<ConsumerDto> registerConsumer(@RequestBody @Validated ConsumerDto consumerDto) {
         return ResponseEntity.ok(consumerDto);
     }
 
