@@ -2,20 +2,21 @@ package layeredarchitecture.presentation.exception;
 
 import layeredarchitecture.presentation.response.ErrorResponse;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(ResponseStatusException.class)
-    public ResponseEntity<ErrorResponse> handleResponseStatusException(ResponseStatusException ex) {
-        // ResponseStatusException 이 발생했을 때, 전역적으로 ErrorResponse 를 반환하도록 설정
+    @ExceptionHandler({CustomException.class})
+    protected ResponseEntity<ErrorResponse> handleCustomException(CustomException ex) {
         ErrorResponse errorResponse = ErrorResponse.builder()
-                .message(ex.getReason())
+                .status(ex.getErrorCode()
+                        .getStatus())
+                .message(ex.getErrorCode()
+                        .getMessage())
                 .build();
-        return new ResponseEntity<>(errorResponse, ex.getStatusCode());
+        return new ResponseEntity<>(errorResponse, errorResponse.getStatus());
     }
 
 }

@@ -2,12 +2,12 @@ package layeredarchitecture.application;
 
 import layeredarchitecture.dto.ConsumerDto;
 import layeredarchitecture.infrastructure.ConsumerRepository;
+import layeredarchitecture.presentation.exception.CustomException;
+import layeredarchitecture.presentation.exception.constants.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.server.ResponseStatusException;
 
 @Slf4j
 @Service
@@ -23,7 +23,7 @@ public class ConsumerService {
                         .id(consumerEntity.getId())
                         .name(consumerEntity.getName())
                         .build())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "데이터가 없습니다"));
+                .orElseThrow(() -> new CustomException(ErrorCode.CONSUMER_NOT_FOUND));
     }
 
 }

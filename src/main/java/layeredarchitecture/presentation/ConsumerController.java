@@ -47,7 +47,7 @@ public class ConsumerController {
                     responseCode = "404",
                     description = "데이터 없음",
                     content = @Content(
-                            examples = @ExampleObject(value = "{\"message\": \"데이터가 없습니다\"}"),
+                            examples = @ExampleObject(value = "{\"status\":\"NOT_FOUND\", \"message\": \"존재하지 않는 고객 ID 입니다.\"}"),
                             schema = @Schema(implementation = ErrorResponse.class)
                     )
             )}
