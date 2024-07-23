@@ -1,14 +1,13 @@
 package layeredarchitecture.application;
 
-
-import java.util.Optional;
 import layeredarchitecture.dto.ConsumerDto;
 import layeredarchitecture.infrastructure.ConsumerRepository;
-import layeredarchitecture.infrastructure.entity.ConsumerEntity;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 @Slf4j
 @Service
@@ -19,18 +18,12 @@ public class ConsumerService {
 
     @Transactional(readOnly = true)
     public ConsumerDto getConsumerInfo(Long id) {
-        Optional<ConsumerEntity> consumerOptional = consumerRepository.findById(id);
-
-        if (consumerOptional.isPresent()) {
-            ConsumerEntity consumerEntity = consumerOptional.get();
-
-            return ConsumerDto.builder()
-                    .id(consumerEntity.getId())
-                    .name(consumerEntity.getName())
-                    .build();
-        }
-
-        return null;
+        return consumerRepository.findById(id)
+                .map(consumerEntity -> ConsumerDto.builder()
+                        .id(consumerEntity.getId())
+                        .name(consumerEntity.getName())
+                        .build())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "데이터가 없습니다"));
     }
 
 }
