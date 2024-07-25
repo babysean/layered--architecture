@@ -49,7 +49,7 @@ public class StoreService {
      * 특정 상점의 판매 과일 목록 조회
      *
      * @param storeId 상점 ID
-     * @return List<StoreDto>
+     * @return List<StoreFruitListDto>
      */
     @Transactional(readOnly = true)
     public List<StoreFruitListDto> getStoreFruitListByStoreId(Long storeId) {
@@ -84,7 +84,8 @@ public class StoreService {
     public Long getFruitQuantity(Long storeId, Long fruitId) {
         Optional<StoreFruitListEntity> storeFruitListEntityOptional = storeFruitListRepository.findByStoreEntityIdAndFruitEntityId(storeId, fruitId);
 
-        return storeFruitListEntityOptional.map(StoreFruitListEntity::getQuantity).orElse(0L);
+        return storeFruitListEntityOptional.map(StoreFruitListEntity::getQuantity)
+                                           .orElse(0L);
     }
 
 }

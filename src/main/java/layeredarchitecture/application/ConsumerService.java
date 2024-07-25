@@ -16,6 +16,12 @@ public class ConsumerService {
 
     private final ConsumerRepository consumerRepository;
 
+    /**
+     * 소비자 정보 조회
+     *
+     * @param id 소비자 ID
+     * @return ConsumerDto
+     */
     @Transactional(readOnly = true)
     public ConsumerDto getConsumerInfo(Long id) {
         return consumerRepository.findById(id)
