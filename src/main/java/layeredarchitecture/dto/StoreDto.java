@@ -8,7 +8,7 @@ import lombok.Data;
 public class StoreDto {
 
     private Long id;
-    
+
     private String name;
 
 }

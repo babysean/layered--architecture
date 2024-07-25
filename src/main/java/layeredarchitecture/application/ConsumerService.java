@@ -19,11 +19,11 @@ public class ConsumerService {
     @Transactional(readOnly = true)
     public ConsumerDto getConsumerInfo(Long id) {
         return consumerRepository.findById(id)
-                .map(consumerEntity -> ConsumerDto.builder()
-                        .id(consumerEntity.getId())
-                        .name(consumerEntity.getName())
-                        .build())
-                .orElseThrow(() -> new CustomException(ErrorCode.CONSUMER_NOT_FOUND));
+                                 .map(consumerEntity -> ConsumerDto.builder()
+                                                                   .id(consumerEntity.getId())
+                                                                   .name(consumerEntity.getName())
+                                                                   .build())
+                                 .orElseThrow(() -> new CustomException(ErrorCode.CONSUMER_NOT_FOUND));
     }
 
 }

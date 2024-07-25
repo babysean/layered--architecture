@@ -1,12 +1,6 @@
 package layeredarchitecture.infrastructure.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,11 +19,17 @@ public class StoreFruitListEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "store_id", nullable = false)
+    @JoinColumn(
+            name = "store_id",
+            nullable = false
+    )
     private StoreEntity storeEntity;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fruit_id", nullable = false)
+    @JoinColumn(
+            name = "fruit_id",
+            nullable = false
+    )
     private FruitEntity fruitEntity;
 
     @Column(name = "price")
