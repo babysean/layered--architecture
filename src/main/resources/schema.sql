@@ -1,11 +1,11 @@
-CREATE TABLE IF NOT EXISTS `consumerEntity`
+CREATE TABLE IF NOT EXISTS `consumer`
 (
     id   BIGINT NOT NULL,
     name VARCHAR(255),
     PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS `storeEntity`
+CREATE TABLE IF NOT EXISTS `store`
 (
     id   BIGINT NOT NULL,
     name VARCHAR(255),
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `store_fruit_list`
     price    BIGINT,
     quantity BIGINT,
     PRIMARY KEY (id),
-    FOREIGN KEY (store_id) REFERENCES `storeEntity` (id) ON UPDATE CASCADE,
+    FOREIGN KEY (store_id) REFERENCES `store` (id) ON UPDATE CASCADE,
     FOREIGN KEY (fruit_id) REFERENCES `fruit` (id) ON UPDATE CASCADE
 );
 
@@ -38,8 +38,8 @@ CREATE TABLE IF NOT EXISTS `shopping_cart`
     store_id              BIGINT,
     is_purchase_completed BOOLEAN,
     PRIMARY KEY (id),
-    FOREIGN KEY (consumer_id) REFERENCES `consumerEntity` (id) ON UPDATE CASCADE,
-    FOREIGN KEY (store_id) REFERENCES `storeEntity` (id) ON UPDATE CASCADE
+    FOREIGN KEY (consumer_id) REFERENCES `consumer` (id) ON UPDATE CASCADE,
+    FOREIGN KEY (store_id) REFERENCES `store` (id) ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS `shopping_cart_item`
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `receipt`
     shopping_cart_id BIGINT,
     total_price      BIGINT,
     PRIMARY KEY (id),
-    FOREIGN KEY (consumer_id) REFERENCES `consumerEntity` (id) ON UPDATE CASCADE,
-    FOREIGN KEY (store_id) REFERENCES `storeEntity` (id) ON UPDATE CASCADE,
+    FOREIGN KEY (consumer_id) REFERENCES `consumer` (id) ON UPDATE CASCADE,
+    FOREIGN KEY (store_id) REFERENCES `store` (id) ON UPDATE CASCADE,
     FOREIGN KEY (shopping_cart_id) REFERENCES `shopping_cart` (id) ON UPDATE CASCADE
 );

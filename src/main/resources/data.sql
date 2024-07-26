@@ -1,36 +1,36 @@
 -- user 데이터 insert --
 
-INSERT INTO `consumerEntity` (id, name)
+INSERT INTO `consumer` (id, name)
 SELECT 1, '상훈'
 FROM dual
-WHERE NOT EXISTS(SELECT * FROM `consumerEntity` WHERE id = 1);
+WHERE NOT EXISTS(SELECT * FROM `consumer` WHERE id = 1);
 
-INSERT INTO `consumerEntity` (id, name)
+INSERT INTO `consumer` (id, name)
 SELECT 2, '현종'
 FROM dual
-WHERE NOT EXISTS(SELECT * FROM `consumerEntity` WHERE id = 2);
+WHERE NOT EXISTS(SELECT * FROM `consumer` WHERE id = 2);
 
-INSERT INTO `consumerEntity` (id, name)
+INSERT INTO `consumer` (id, name)
 SELECT 3, '윤하'
 FROM dual
-WHERE NOT EXISTS(SELECT * FROM `consumerEntity` WHERE id = 3);
+WHERE NOT EXISTS(SELECT * FROM `consumer` WHERE id = 3);
 
-INSERT INTO `consumerEntity` (id, name)
+INSERT INTO `consumer` (id, name)
 SELECT 4, '유경'
 FROM dual
-WHERE NOT EXISTS(SELECT * FROM `consumerEntity` WHERE id = 4);
+WHERE NOT EXISTS(SELECT * FROM `consumer` WHERE id = 4);
 
 -- storeEntity 데이터 insert --
 
-INSERT INTO `storeEntity` (id, name)
+INSERT INTO `store` (id, name)
 SELECT 1, '동화상회'
 FROM dual
-WHERE NOT EXISTS(SELECT * FROM `storeEntity` WHERE id = 1);
+WHERE NOT EXISTS(SELECT * FROM `store` WHERE id = 1);
 
-INSERT INTO `storeEntity` (id, name)
+INSERT INTO `store` (id, name)
 SELECT 2, '일렉과수원'
 FROM dual
-WHERE NOT EXISTS(SELECT * FROM `storeEntity` WHERE id = 2);
+WHERE NOT EXISTS(SELECT * FROM `store` WHERE id = 2);
 
 -- fruitEntity 데이터 insert --
 

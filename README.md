@@ -68,14 +68,14 @@ http://localhost:8080/consumerEntity?id=3
 ### Store 전체 조회
 
 ```
-http://localhost:8080/storeEntity
+http://localhost:8080/store
 ```
 
 ### 특정 Store 의 판매 과일 목록 조회
 
 ```
-http://localhost:8080/storeEntity/1/fruit
-http://localhost:8080/storeEntity/2/fruit
+http://localhost:8080/store/1/fruit
+http://localhost:8080/store/2/fruit
 ```
 
 ---

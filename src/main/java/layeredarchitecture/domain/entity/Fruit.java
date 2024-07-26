@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "FRUIT")
-public class FruitEntity {
+public class Fruit {
 
     @Id
     @Column(name = "id")

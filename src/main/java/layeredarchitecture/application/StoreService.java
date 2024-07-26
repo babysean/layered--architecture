@@ -1,7 +1,7 @@
 package layeredarchitecture.application;
 
-import layeredarchitecture.domain.entity.StoreEntity;
-import layeredarchitecture.domain.entity.StoreFruitListEntity;
+import layeredarchitecture.domain.entity.Store;
+import layeredarchitecture.domain.entity.StoreFruitList;
 import layeredarchitecture.dto.StoreDto;
 import layeredarchitecture.dto.StoreFruitListDto;
 import layeredarchitecture.infrastructure.StoreFruitListRepository;
@@ -31,14 +31,14 @@ public class StoreService {
      */
     @Transactional(readOnly = true)
     public List<StoreDto> getStores() {
-        List<StoreEntity> storeEntities = storeRepository.findAll();
+        List<Store> storeEntities = storeRepository.findAll();
 
         if (!storeEntities.isEmpty()) {
             return storeEntities.stream()
-                                .map(storeEntity -> StoreDto.builder()
-                                                            .id(storeEntity.getId())
-                                                            .name(storeEntity.getName())
-                                                            .build())
+                                .map(store -> StoreDto.builder()
+                                                      .id(store.getId())
+                                                      .name(store.getName())
+                                                      .build())
                                 .collect(Collectors.toList());
         }
 
@@ -53,22 +53,22 @@ public class StoreService {
      */
     @Transactional(readOnly = true)
     public List<StoreFruitListDto> getStoreFruitListByStoreId(Long storeId) {
-        List<StoreFruitListEntity> storeFruitListEntity = storeFruitListRepository.findByStoreEntityId(storeId);
+        List<StoreFruitList> storeFruitList = storeFruitListRepository.findByStoreId(storeId);
 
-        if (!storeFruitListEntity.isEmpty()) {
-            return storeFruitListEntity.stream()
-                                       .map(storeFruit -> StoreFruitListDto.builder()
-                                                                           .id(storeFruit.getId())
-                                                                           .storeId(storeFruit.getStoreEntity()
-                                                                                              .getId())
-                                                                           .fruitId(storeFruit.getFruitEntity()
-                                                                                              .getId())
-                                                                           .fruitName(storeFruit.getFruitEntity()
-                                                                                                .getName())
-                                                                           .price(storeFruit.getPrice())
-                                                                           .quantity(storeFruit.getQuantity())
-                                                                           .build())
-                                       .collect(Collectors.toList());
+        if (!storeFruitList.isEmpty()) {
+            return storeFruitList.stream()
+                                 .map(storeFruit -> StoreFruitListDto.builder()
+                                                                     .id(storeFruit.getId())
+                                                                     .storeId(storeFruit.getStore()
+                                                                                        .getId())
+                                                                     .fruitId(storeFruit.getFruit()
+                                                                                        .getId())
+                                                                     .fruitName(storeFruit.getFruit()
+                                                                                          .getName())
+                                                                     .price(storeFruit.getPrice())
+                                                                     .quantity(storeFruit.getQuantity())
+                                                                     .build())
+                                 .collect(Collectors.toList());
         }
 
         return null;
@@ -83,9 +83,9 @@ public class StoreService {
      */
     @Transactional(readOnly = true)
     public Long getFruitQuantity(Long storeId, Long fruitId) {
-        Optional<StoreFruitListEntity> storeFruitListEntityOptional = storeFruitListRepository.findByStoreEntityIdAndFruitEntityId(storeId, fruitId);
+        Optional<StoreFruitList> storeFruitListEntityOptional = storeFruitListRepository.findByStoreIdAndFruitId(storeId, fruitId);
 
-        return storeFruitListEntityOptional.map(StoreFruitListEntity::getQuantity)
+        return storeFruitListEntityOptional.map(StoreFruitList::getQuantity)
                                            .orElse(0L);
     }
 

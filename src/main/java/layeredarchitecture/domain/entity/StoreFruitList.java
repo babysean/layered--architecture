@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "STORE_FRUIT_LIST")
-public class StoreFruitListEntity {
+public class StoreFruitList {
 
     @Id
     @Column(name = "id")
@@ -23,14 +23,14 @@ public class StoreFruitListEntity {
             name = "store_id",
             nullable = false
     )
-    private StoreEntity storeEntity;
+    private Store store;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(
             name = "fruit_id",
             nullable = false
     )
-    private FruitEntity fruitEntity;
+    private Fruit fruit;
 
     @Column(name = "price")
     private Long price;
