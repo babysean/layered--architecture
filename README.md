@@ -86,6 +86,7 @@ http://localhost:8080/store/2/fruit
 - spring-boot-starter-web (latest)
 - spring-boot-starter-data-jpa (latest)
 - spring-boot-starter-test (latest)
+- spring-boot-starter-validation (latest)
 - springdoc-openapi-starter-webmvc-ui (2.6.0)
 - lombok (latest)
 - h2 (latest)
