@@ -1,4 +1,4 @@
-package layeredarchitecture.infrastructure.entity;
+package layeredarchitecture.domain.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,8 +14,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "FRUIT")
-public class FruitEntity {
+@Table(name = "CONSUMER")
+public class ConsumerEntity {
 
     @Id
     @Column(name = "id")

@@ -1,11 +1,11 @@
 package layeredarchitecture.application;
 
+import layeredarchitecture.domain.entity.StoreEntity;
+import layeredarchitecture.domain.entity.StoreFruitListEntity;
 import layeredarchitecture.dto.StoreDto;
 import layeredarchitecture.dto.StoreFruitListDto;
 import layeredarchitecture.infrastructure.StoreFruitListRepository;
 import layeredarchitecture.infrastructure.StoreRepository;
-import layeredarchitecture.infrastructure.entity.StoreEntity;
-import layeredarchitecture.infrastructure.entity.StoreFruitListEntity;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -81,6 +81,7 @@ public class StoreService {
      * @param fruitId 과일 ID
      * @return Long
      */
+    @Transactional(readOnly = true)
     public Long getFruitQuantity(Long storeId, Long fruitId) {
         Optional<StoreFruitListEntity> storeFruitListEntityOptional = storeFruitListRepository.findByStoreEntityIdAndFruitEntityId(storeId, fruitId);
 
