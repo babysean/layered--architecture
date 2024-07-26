@@ -1,4 +1,4 @@
-package layeredarchitecture.domain.entity;
+package layeredarchitecture.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

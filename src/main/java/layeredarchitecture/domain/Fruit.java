@@ -1,20 +1,21 @@
-package layeredarchitecture.domain.entity;
+package layeredarchitecture.domain;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Entity
 @Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "STORE")
-public class Store {
+@Table(name = "FRUIT")
+public class Fruit {
 
     @Id
     @Column(name = "id")
@@ -22,11 +23,5 @@ public class Store {
 
     @Column(name = "name")
     private String name;
-
-    @OneToMany(
-            fetch = FetchType.LAZY,
-            mappedBy = "store"
-    )
-    private List<StoreFruitList> storeFruits;
 
 }

@@ -1,7 +1,7 @@
 package layeredarchitecture.application;
 
-import layeredarchitecture.domain.entity.Store;
-import layeredarchitecture.domain.entity.StoreFruitList;
+import layeredarchitecture.domain.Store;
+import layeredarchitecture.domain.StoreFruitList;
 import layeredarchitecture.dto.StoreDto;
 import layeredarchitecture.dto.StoreFruitListDto;
 import layeredarchitecture.infrastructure.StoreFruitListRepository;

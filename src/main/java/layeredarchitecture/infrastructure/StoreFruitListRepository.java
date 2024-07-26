@@ -1,6 +1,6 @@
 package layeredarchitecture.infrastructure;
 
-import layeredarchitecture.domain.entity.StoreFruitList;
+import layeredarchitecture.domain.StoreFruitList;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
