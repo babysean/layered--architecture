@@ -1,28 +1,32 @@
 spring:
-    application:
-        name: layered-architecture
-    h2:
-        console:
-            enabled: true # H2 Console 사용 여부
-            path: /h2-console # H2 Console Path
-    datasource:
-        driver-class-name: org.h2.Driver # Database 를 H2 선언
-        url: jdbc:h2:~/test # H2 접속 정보
-        username: sa # H2 접속 username
-        password: 1234 # H2 접속 password
-    jpa:
-        defer-datasource-initialization: true
-        hibernate:
-            ddl-auto: update # 테이블이 존재할 경우 스킵
-        properties:
-            hibernate:
-                show_sql: true
-                format_sql: true
-                use_sql_comments: true
-    sql:
-        init:
-            mode: always
+  application:
+    name: layered-architecture
+  h2:
+    console:
+      enabled: true # H2 Console 사용 여부
+      path: /h2-console # H2 Console Path
+  datasource:
+    driver-class-name: org.h2.Driver # Database 를 H2 선언
+    url: jdbc:h2:~/test # H2 접속 정보
+    username: sa # H2 접속 username
+    password: 1234 # H2 접속 password
+  jpa:
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: update # 테이블이 존재할 경우 스킵
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
+  sql:
+    init:
+      mode: always
 
 springdoc:
-    api-docs:
-        path: /api-docs
+  api-docs:
+    path: /api-docs
+
+jwt:
+  secret-key: d8f7e5b5e0d1f2b5d4c3e2f7c1d5a2b8c5f2d3c8d5e3a5c2b6d4e8f7c5d2a5e0b1c7d3f4c1e2d7b8a3c5f6
+  expiration: 600000

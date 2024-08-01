@@ -1,3 +1,9 @@
+-- client system 데이터 insert --
+INSERT INTO `client_system` (id, name, password)
+SELECT 1, 'front', '1234'
+FROM dual
+WHERE NOT EXISTS(SELECT * FROM `client_system` WHERE id = 1);
+
 -- user 데이터 insert --
 
 INSERT INTO `consumer` (id, name)

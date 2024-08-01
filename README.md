@@ -1,8 +1,11 @@
 # 레이어드 아키텍처 학습
 
-<img src="https://img.shields.io/badge/openjdk_17-000000?style=for-the-badge&logo=openjdk&logoColor=white" alt="openjdk-17">
+<img src="https://img.shields.io/badge/openjdk_21-000000?style=for-the-badge&logo=openjdk&logoColor=white" alt="openjdk-17">
 <img src="https://img.shields.io/badge/spring_boot-6DB33F?style=for-the-badge&logo=spring&logoColor=white" alt="spring-boot">
 <img src="https://img.shields.io/badge/h2-4479A1?style=for-the-badge&logo=wikidata&logoColor=white" alt="h2">
+<img src="https://img.shields.io/badge/swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=white" alt="swagger">
+<img src="https://img.shields.io/badge/jpa-20336B?style=for-the-badge&logoColor=white" alt="jpa">
+<img src="https://img.shields.io/badge/slf4j (with logback)-20336B?style=for-the-badge&logoColor=white" alt="slf4j">
 
 ---
 
@@ -30,10 +33,10 @@
 - Application Layer
     - Service
 - Domain
-    - Domain (비즈니스 로직)
+    - Entity
+    - Domain
 - Infrastructure Layer
     - Repository
-    - Entity
 - DTO
 
 ### ERD
@@ -44,7 +47,9 @@
 
 ## 설치 방법
 
-- JDK 17 로 프로젝트를 실행하면 됩니다.
+1. JDK 21 설치
+2. Git pull
+3. 어플리케이션 실행
 
 ---
 
@@ -55,28 +60,7 @@ API 문서 다운로드 (yaml) : http://localhost:8080/api-docs.yaml
 API 문서 다운로드 (json) : http://localhost:8080/api-docs
 
 1. LayeredArchitectureApplication 을 실행합니다.
-2. 아래 API 를 호출합니다.
-
-### 고객정보 조회
-
-```
-http://localhost:8080/consumerEntity?id=1
-http://localhost:8080/consumerEntity?id=2
-http://localhost:8080/consumerEntity?id=3
-```
-
-### Store 전체 조회
-
-```
-http://localhost:8080/store
-```
-
-### 특정 Store 의 판매 과일 목록 조회
-
-```
-http://localhost:8080/store/1/fruit
-http://localhost:8080/store/2/fruit
-```
+2. 위 Swagger 문서를 보고 API 를 호출 합니다.
 
 ---
 

@@ -3,6 +3,7 @@ package layeredarchitecture.presentation.exception;
 import jakarta.servlet.http.HttpServletRequest;
 import layeredarchitecture.presentation.response.ErrorResponse;
 import layeredarchitecture.presentation.response.FieldErrorDetail;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,19 +17,29 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    /**
+     * HTTP Header 의 MediaType을 application/problem+json 으로 설정한다.
+     */
     private HttpHeaders setProblemJsonHeaders() {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PROBLEM_JSON);
         return headers;
     }
 
-    @ExceptionHandler({CustomException.class})
+    /**
+     * CustomException 을 처리하는 핸들러
+     *
+     * @param e       CustomException
+     * @param request HttpServletRequest
+     * @return ResponseEntity<ErrorResponse>
+     */
+    @ExceptionHandler(CustomException.class)
     protected ResponseEntity<ErrorResponse> handleCustomException(CustomException e, HttpServletRequest request) {
-        ErrorResponse errorResponse = ErrorResponse.builder()
-                                                   .type(URI.create("/errors/custom"))
+        ErrorResponse errorResponse = ErrorResponse.builder().type(URI.create("/errors/custom"))
                                                    .title("Custom Error")
                                                    .status(e.getErrorCode().getStatus().value())
                                                    .detail(e.getErrorCode().getMessage())
@@ -37,26 +48,35 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, setProblemJsonHeaders(), errorResponse.getStatus());
     }
 
-    @ExceptionHandler({MethodArgumentNotValidException.class})
+    /**
+     * MethodArgumentNotValidException 을 처리하는 핸들러
+     *
+     * @param e       MethodArgumentNotValidException
+     * @param request HttpServletRequest
+     * @return ResponseEntity<ErrorResponse>
+     */
+    @ExceptionHandler(MethodArgumentNotValidException.class)
     protected ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException e, HttpServletRequest request) {
-        List<FieldErrorDetail> fieldErrors = e.getBindingResult()
-                                              .getFieldErrors()
-                                              .stream()
+        List<FieldErrorDetail> fieldErrors = e.getBindingResult().getFieldErrors().stream()
                                               .map(error -> new FieldErrorDetail(error.getField(), error.getDefaultMessage()))
                                               .collect(Collectors.toList());
 
-        ErrorResponse errorResponse = ErrorResponse.builder()
-                                                   .type(URI.create("/errors/validation"))
+        ErrorResponse errorResponse = ErrorResponse.builder().type(URI.create("/errors/validation"))
                                                    .title("Validation Error")
                                                    .status(HttpStatus.BAD_REQUEST.value())
                                                    .detail("Validation failed for one or more fields")
                                                    .instance(URI.create(request.getRequestURI()))
-                                                   .fieldErrors(fieldErrors)
-                                                   .build();
+                                                   .fieldErrors(fieldErrors).build();
 
         return new ResponseEntity<>(errorResponse, setProblemJsonHeaders(), HttpStatus.BAD_REQUEST);
     }
 
+    /**
+     * HttpMessageNotReadableException 을 처리하는 핸들러
+     *
+     * @param request HttpServletRequest
+     * @return ResponseEntity<ErrorResponse>
+     */
     @ExceptionHandler(HttpMessageNotReadableException.class)
     protected ResponseEntity<ErrorResponse> handleHttpMessageNotReadableException(HttpServletRequest request) {
         ErrorResponse errorResponse = ErrorResponse.builder()
