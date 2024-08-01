@@ -24,4 +24,10 @@ public class Consumer {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "age")
+    private String age;
+
+    @Column(name = "money")
+    private String money;
+
 }
