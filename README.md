@@ -26,7 +26,7 @@
 - **Service Layer**는 **Repository Layer**만 의존해야한다.
     - 예외) **Application Layer**는 **Infrastructure Layer**에 의존할 수도 있다.
 
-### 계층별 구성
+### 계층별 구성 (간단)
 
 - Presentation Layer
     - Controller
@@ -37,7 +37,10 @@
     - Domain
 - Infrastructure Layer
     - Repository
-- DTO
+
+### 실제 프로젝트 구조
+
+![img.png](readme-image/real-project-structure.png)
 
 ### ERD
 
