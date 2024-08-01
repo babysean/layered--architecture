@@ -5,7 +5,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import layeredarchitecture.architecture.domain.Jwt;
+import layeredarchitecture.architecture.domain.JwtManager;
 import layeredarchitecture.architecture.presentation.response.ErrorResponse;
 import layeredarchitecture.common.exception.JwtAuthenticationException;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +26,7 @@ import java.net.URI;
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    private final Jwt jwt;
+    private final JwtManager jwtManager;
 
     /**
      * 요청이 들어올 때마다 실행되는 메서드
@@ -60,12 +60,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             String token = authHeader.replace("Bearer ", "");
 
             // JWT 유효하지 않으면 에러 반환
-            if (!jwt.isTokenValid(token)) {
+            if (!jwtManager.isTokenValid(token)) {
                 throw new JwtAuthenticationException("JWT not valid");
             }
 
             // 클라이언트 시스템 ID 추출
-            String id = jwt.extractId(token);
+            String id = jwtManager.extractId(token);
 
             // 클라이언트 시스템 ID로 인증 객체 생성 (권한은 null)
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(id, null, null);

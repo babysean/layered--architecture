@@ -1,6 +1,6 @@
 package layeredarchitecture.architecture.application;
 
-import layeredarchitecture.architecture.domain.Jwt;
+import layeredarchitecture.architecture.domain.JwtManager;
 import layeredarchitecture.architecture.infrastructure.ClientSystemRepository;
 import layeredarchitecture.common.dto.AuthDto;
 import layeredarchitecture.common.dto.ClientSystemDto;
@@ -18,7 +18,7 @@ public class AuthenticationService {
 
     private final ClientSystemRepository clientSystemRepository;
 
-    private final Jwt jwt;
+    private final JwtManager jwtManager;
 
     /**
      * 클라이언트 시스템 DB 인증
@@ -29,7 +29,7 @@ public class AuthenticationService {
     @Transactional(readOnly = true)
     public void authenticationClientSystem(String authHeader, AuthDto authDto) {
         String token = authHeader.replace("Bearer ", "");
-        boolean isValid = jwt.isTokenValid(token);
+        boolean isValid = jwtManager.isTokenValid(token);
 
         if (!isValid) {
             throw new CustomException(ErrorCode.JWT_NOT_VALID);

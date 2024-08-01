@@ -10,13 +10,13 @@ import javax.crypto.SecretKey;
 import java.util.Date;
 
 @Component
-public class Jwt {
+public class JwtManager {
 
     private final SecretKey key;
 
     private final long expiration;
 
-    public Jwt(@Value("${jwt.secret-key}") String secret, @Value("${jwt.expiration}") long expiration) {
+    public JwtManager(@Value("${jwt.secret-key}") String secret, @Value("${jwt.expiration}") long expiration) {
         this.key = Keys.hmacShaKeyFor(secret.getBytes());
         this.expiration = expiration;
     }
