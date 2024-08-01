@@ -10,9 +10,24 @@ INSERT INTO `shopping_cart` (id, consumer_id, store_id, is_purchase_completed)
 SELECT 1, 1, 1, false
 FROM dual
 WHERE NOT EXISTS(SELECT * FROM `shopping_cart` WHERE id = 1);
+
+INSERT INTO `shopping_cart` (id, consumer_id, store_id, is_purchase_completed)
+SELECT 2, 2, 1, false
+FROM dual
+WHERE NOT EXISTS(SELECT * FROM `shopping_cart` WHERE id = 2);
+
+INSERT INTO `shopping_cart` (id, consumer_id, store_id, is_purchase_completed)
+SELECT 3, 3, 1, false
+FROM dual
+WHERE NOT EXISTS(SELECT * FROM `shopping_cart` WHERE id = 3);
+
+INSERT INTO `shopping_cart` (id, consumer_id, store_id, is_purchase_completed)
+SELECT 4, 4, 1, false
+FROM dual
+WHERE NOT EXISTS(SELECT * FROM `shopping_cart` WHERE id = 4);
 /* ---------------------------------- */
 
-/* shopping_cart 데이터 insert */
+/* shopping_cart_item 데이터 insert */
 INSERT INTO `shopping_cart_item` (id, shopping_cart_id, fruit_id, quantity, price)
 SELECT 1, 1, 1, 10, 40000
 FROM dual
