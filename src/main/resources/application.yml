@@ -29,4 +29,4 @@ springdoc:
 
 jwt:
   secret-key: d8f7e5b5e0d1f2b5d4c3e2f7c1d5a2b8c5f2d3c8d5e3a5c2b6d4e8f7c5d2a5e0b1c7d3f4c1e2d7b8a3c5f6
-  expiration: 600000
+  expiration: 3600000 # 1시간
