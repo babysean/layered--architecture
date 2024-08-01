@@ -8,8 +8,10 @@ CREATE TABLE IF NOT EXISTS `client_system`
 
 CREATE TABLE IF NOT EXISTS `consumer`
 (
-    id   BIGINT NOT NULL,
-    name VARCHAR(255),
+    id    BIGINT NOT NULL,
+    name  VARCHAR(255),
+    age   BIGINT,
+    money BIGINT,
     PRIMARY KEY (id)
 );
 
