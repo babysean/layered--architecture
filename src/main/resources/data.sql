@@ -1,8 +1,23 @@
--- client system 데이터 insert --
+/* client system 데이터 insert */
 INSERT INTO `client_system` (id, name, password)
 SELECT 1, 'front', '1234'
 FROM dual
 WHERE NOT EXISTS(SELECT * FROM `client_system` WHERE id = 1);
+/* ---------------------------------- */
+
+/* shopping_cart 데이터 insert */
+INSERT INTO `shopping_cart` (id, consumer_id, store_id, is_purchase_completed)
+SELECT 1, 1, 1, false
+FROM dual
+WHERE NOT EXISTS(SELECT * FROM `shopping_cart` WHERE id = 1);
+/* ---------------------------------- */
+
+/* shopping_cart 데이터 insert */
+INSERT INTO `shopping_cart_item` (id, shopping_cart_id, fruit_id, quantity, price)
+SELECT 1, 1, 1, 10, 40000
+FROM dual
+WHERE NOT EXISTS(SELECT * FROM `shopping_cart_item` WHERE id = 2);
+/* ---------------------------------- */
 
 -- user 데이터 insert --
 
