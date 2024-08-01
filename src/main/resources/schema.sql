@@ -8,11 +8,13 @@ CREATE TABLE IF NOT EXISTS `client_system`
 
 CREATE TABLE IF NOT EXISTS `consumer`
 (
-    id    BIGINT NOT NULL,
-    name  VARCHAR(255),
-    age   BIGINT,
-    money BIGINT,
-    PRIMARY KEY (id)
+    id               BIGINT NOT NULL,
+    name             VARCHAR(255),
+    shopping_cart_id BIGINT,
+    age              BIGINT,
+    money            BIGINT,
+    PRIMARY KEY (id),
+    FOREIGN KEY (shopping_cart_id) REFERENCES `shopping_cart` (id) ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS `store`
