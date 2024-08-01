@@ -16,7 +16,7 @@ WHERE NOT EXISTS(SELECT * FROM `shopping_cart` WHERE id = 1);
 INSERT INTO `shopping_cart_item` (id, shopping_cart_id, fruit_id, quantity, price)
 SELECT 1, 1, 1, 10, 40000
 FROM dual
-WHERE NOT EXISTS(SELECT * FROM `shopping_cart_item` WHERE id = 2);
+WHERE NOT EXISTS(SELECT * FROM `shopping_cart_item` WHERE id = 1);
 /* ---------------------------------- */
 
 -- user 데이터 insert --
