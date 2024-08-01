@@ -26,18 +26,18 @@ SELECT 1, '상훈', 1, 33, 100000000
 FROM dual
 WHERE NOT EXISTS(SELECT * FROM `consumer` WHERE id = 1);
 
-INSERT INTO `consumer` (id, name)
+INSERT INTO `consumer` (id, name, shopping_cart_id, age, money)
 SELECT 2, '현종', 2, 29, 100000000
 FROM dual
 WHERE NOT EXISTS(SELECT * FROM `consumer` WHERE id = 2);
 
-INSERT INTO `consumer` (id, name)
+INSERT INTO `consumer` (id, name, shopping_cart_id, age, money)
 SELECT 3, '윤하', 3, 28, 100000000
 FROM dual
 WHERE NOT EXISTS(SELECT * FROM `consumer` WHERE id = 3);
 
-INSERT INTO `consumer` (id, name)
-SELECT 4, '유경', 1, 27, 100000000
+INSERT INTO `consumer` (id, name, shopping_cart_id, age, money)
+SELECT 4, '유경', 4, 27, 100000000
 FROM dual
 WHERE NOT EXISTS(SELECT * FROM `consumer` WHERE id = 4);
 
