@@ -11,13 +11,13 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AuthResponse {
 
-    @Schema(description = "시스템 ID")
-    private String id;
+    @Schema(description = "성공 제목")
+    private String title;
 
-    @Schema(description = "JWT")
-    private String jwt;
+    @Schema(description = "HTTP 상태 코드")
+    private int status;
 
-    @Schema(description = "JWT 유효성")
-    private Boolean isValid;
+    @Schema(description = "성공 설명")
+    private final String detail;
 
 }

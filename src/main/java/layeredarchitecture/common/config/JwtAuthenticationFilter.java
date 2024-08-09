@@ -5,7 +5,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import layeredarchitecture.architecture.domain.JwtManager;
+import layeredarchitecture.architecture.domain.JsonWebToken;
 import layeredarchitecture.architecture.presentation.response.ErrorResponse;
 import layeredarchitecture.common.exception.JwtAuthenticationException;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +26,7 @@ import java.net.URI;
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    private final JwtManager jwtManager;
+    private final JsonWebToken jwt;
 
     /**
      * 요청이 들어올 때마다 실행되는 메서드
@@ -41,9 +41,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
-            // "/auth" 경로는 필터를 태우지 않음
-            if (request.getRequestURI()
-                       .startsWith("/auth")) {
+            // JWT 발급, h2, swagger 는 token 인증 제외
+            if (isPassable(request.getRequestURI())) {
                 filterChain.doFilter(request, response);
                 return;
             }
@@ -60,12 +59,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             String token = authHeader.replace("Bearer ", "");
 
             // JWT 유효하지 않으면 에러 반환
-            if (!jwtManager.isTokenValid(token)) {
-                throw new JwtAuthenticationException("JWT not valid");
-            }
+            jwt.isTokenValid(token);
 
             // 클라이언트 시스템 ID 추출
-            String id = jwtManager.extractId(token);
+            String id = jwt.extractId(token);
 
             // 클라이언트 시스템 ID로 인증 객체 생성 (권한은 null)
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(id, null, null);
@@ -83,6 +80,17 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             SecurityContextHolder.clearContext();
             handleException(response, e, request.getRequestURI());
         }
+    }
+
+    /**
+     * JWT 인증 필터 제외 유무
+     *
+     * @param uri URI
+     * @return boolean
+     */
+    private boolean isPassable(String uri) {
+        return uri.startsWith("/auth") || uri.startsWith("/swagger-ui") ||
+                uri.startsWith("/api-docs") || uri.startsWith("/h2-console");
     }
 
     /**

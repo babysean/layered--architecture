@@ -40,13 +40,15 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(CustomException.class)
     protected ResponseEntity<ErrorResponse> handleCustomException(CustomException e, HttpServletRequest request) {
         ErrorResponse errorResponse = ErrorResponse.builder()
-                                                   .type(URI.create("/errors/custom"))
-                                                   .title("Custom Error")
+                                                   .type(URI.create(e.getErrorCode()
+                                                                     .getType()))
+                                                   .title(e.getErrorCode()
+                                                           .getTitle())
                                                    .status(e.getErrorCode()
                                                             .getStatus()
                                                             .value())
                                                    .detail(e.getErrorCode()
-                                                            .getMessage())
+                                                            .getDetail())
                                                    .instance(URI.create(request.getRequestURI()))
                                                    .build();
         return new ResponseEntity<>(errorResponse, setProblemJsonHeaders(), errorResponse.getStatus());
@@ -68,10 +70,10 @@ public class GlobalExceptionHandler {
                                               .collect(Collectors.toList());
 
         ErrorResponse errorResponse = ErrorResponse.builder()
-                                                   .type(URI.create("/errors/validation"))
-                                                   .title("Validation Error")
+                                                   .type(URI.create("/errors/parameter"))
+                                                   .title("PARAMETER NOT VALID")
                                                    .status(HttpStatus.BAD_REQUEST.value())
-                                                   .detail("Validation failed for one or more fields")
+                                                   .detail("파라미터가 올바르지 않습니다.")
                                                    .instance(URI.create(request.getRequestURI()))
                                                    .fieldErrors(fieldErrors)
                                                    .build();
@@ -88,10 +90,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     protected ResponseEntity<ErrorResponse> handleHttpMessageNotReadableException(HttpServletRequest request) {
         ErrorResponse errorResponse = ErrorResponse.builder()
-                                                   .type(URI.create("/errors/bad-request"))
-                                                   .title("Malformed JSON Error")
+                                                   .type(URI.create("/errors/parameter"))
+                                                   .title("PARAMETER NOT VALID")
                                                    .status(HttpStatus.BAD_REQUEST.value())
-                                                   .detail("Request body is not readable or malformed JSON")
+                                                   .detail("body 의 값을 읽을 수 없습니다.")
                                                    .instance(URI.create(request.getRequestURI()))
                                                    .build();
 

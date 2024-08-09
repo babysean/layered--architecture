@@ -1,6 +1,6 @@
 package layeredarchitecture.common.exception;
 
-import layeredarchitecture.common.exception.constants.ErrorCode;
+import layeredarchitecture.common.constants.ErrorCode;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;

@@ -1,11 +1,10 @@
 package layeredarchitecture.architecture.application;
 
-import layeredarchitecture.architecture.domain.JwtManager;
+import layeredarchitecture.architecture.domain.JsonWebToken;
+import layeredarchitecture.architecture.dto.AuthDto;
 import layeredarchitecture.architecture.infrastructure.ClientSystemRepository;
-import layeredarchitecture.common.dto.AuthDto;
-import layeredarchitecture.common.dto.ClientSystemDto;
+import layeredarchitecture.common.constants.ErrorCode;
 import layeredarchitecture.common.exception.CustomException;
-import layeredarchitecture.common.exception.constants.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -18,35 +17,39 @@ public class AuthenticationService {
 
     private final ClientSystemRepository clientSystemRepository;
 
-    private final JwtManager jwtManager;
+    private final JsonWebToken jwt;
 
     /**
-     * 클라이언트 시스템 DB 인증
+     * 클라이언트 시스템 정보를 전달 받아 JWT 를 생성하고 반환한다.
      *
-     * @param authHeader 헤더 정보
-     * @param authDto    인증 정보
+     * @param authDto 인증할 클라이언트 시스템 정보
+     * @return String
      */
     @Transactional(readOnly = true)
-    public void authenticationClientSystem(String authHeader, AuthDto authDto) {
-        String token = authHeader.replace("Bearer ", "");
-        boolean isValid = jwtManager.isTokenValid(token);
+    public String generatedJwt(AuthDto authDto) {
+        String clientSystemName = authDto.getName();
+        String clientSystemPassword = authDto.getPassword();
 
-        if (!isValid) {
-            throw new CustomException(ErrorCode.JWT_NOT_VALID);
-        }
+        String password = clientSystemRepository.findPasswordByName(authDto.getName())
+                                                .orElseThrow(() -> new CustomException(ErrorCode.ID_PASSWORD_NOT_MATCHED));
 
-        ClientSystemDto clientSystemDto = clientSystemRepository.findById(authDto.getId())
-                                                                .map(clientSystemEntity -> ClientSystemDto.builder()
-                                                                                                          .id(clientSystemEntity.getId())
-                                                                                                          .name(clientSystemEntity.getName())
-                                                                                                          .password(clientSystemEntity.getPassword())
-                                                                                                          .build())
-                                                                .orElseThrow(() -> new CustomException(ErrorCode.CLIENT_SYSTEM_NOT_FOUND));
-
-        if (!authDto.getPassword()
-                    .equals(clientSystemDto.getPassword())) {
+        if (!clientSystemPassword.equals(password)) {
             throw new CustomException(ErrorCode.ID_PASSWORD_NOT_MATCHED);
         }
+
+        return jwt.generateToken(clientSystemName);
+    }
+
+    /**
+     * 전달 받은 token의 유효성을 검사하고 반환한다.
+     *
+     * @param authHeader 인증 관련 HEADER 정보
+     */
+    @Transactional(readOnly = true)
+    public void validatedJwt(String authHeader) {
+        String token = authHeader.replace("Bearer ", "");
+
+        jwt.isTokenValid(token);
     }
 
 }

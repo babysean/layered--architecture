@@ -28,7 +28,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authorize -> {
                 // `/auth/**` 로 시작하는 요청은 인증 통과시키고, 그 외의 모든 요청은 인증 필요
-                authorize.requestMatchers("/auth/**")
+                authorize.requestMatchers("/auth/**", "/swagger-ui/**", "/api-docs/**", "/h2-console/**")
                          .permitAll()
                          .anyRequest()
                          .authenticated();
